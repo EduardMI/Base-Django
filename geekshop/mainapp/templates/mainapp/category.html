@@ -1,0 +1,42 @@
+{% extends "geekshop/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="hero-white">
+			{% include 'geekshop/includes/inc_main_menu.html' %}
+	</div>
+
+<div class="links clearfix">
+	<ul class="links-menu">
+		{% for link in links_menu %}
+		<li>
+			<a href="{{ link.href }}"
+			   class="{% if request.path == link.href %}
+                        active
+                      {% endif %}">
+					{{ link.name }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+<div class="tab-content">
+	{% for item in product %}
+	{% if item.category == category %}
+	<div class="block">
+		<a href="#"><img src="/media/{{ item.image }}" alt="{{ item.short_desc }}">
+			<div class="text">
+				<img src="{% static 'img/icon-hover.png' %}" alt="">
+				<h4>{{ item.name }}</h4>
+				<p>{{ item.short_desc }} </p>
+			</div>
+		</a>
+	</div>
+	{% endif %}
+	{% endfor %}
+</div>
+
+
+<div class="clr"></div>
+{% endblock %}
