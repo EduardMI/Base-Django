@@ -21,9 +21,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('contact/', views.contact, name='contact'),
+
     path('', views.index, name='main'),
-    path('products/', include('mainapp.urls', namespace ='products'))
+    path('contact/', views.contact, name='contact'),
+
+    path('products/', include('mainapp.urls', namespace='products')),
+
+    path('auth/', include('authapp.urls', namespace='auth')),
 ]
 
 if settings.DEBUG:
