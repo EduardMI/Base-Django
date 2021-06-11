@@ -4,26 +4,11 @@
 
 {% block content %}
 	<div class="hero-white">
-			{% include 'geekshop/includes/inc_main_menu.html' %}
+		{% include 'geekshop/includes/inc_main_menu.html' %}
 	</div>
-
 	<div class="details">
-		<div class="links clearfix">
-			<ul class="links-menu">
-				{% for link in links_menu %}
-        			<li>
-            			<a href="{{link.href }}"
-               				class="{% if request.path == link.href %}
-                        			active
-                      			{% endif %}">
-                			{{ link.name }}
-            			</a>
-        			</li>
-    			{% endfor %}
 
-			</ul>
-		</div>
-
+{% include 'geekshop/includes/inc_links_menu.html' %}
 		<div class="details-products">
 			<div class="details-slider">
 				<div class="slider-product">
@@ -36,12 +21,12 @@
 						</a>
 					</div>
 					<div class="block">
-						<a href="#"><img src="{% static 'img/controll1.jpg' %}" alt="">
+						<a href="#"><img src="{% static 'img/control1.jpg' %}" alt="">
 							<div class="text"></div>
 						</a>
 					</div>
 					<div class="block">
-						<a href="#"><img src="{% static 'img/controll2.jpg'}" alt="">
+						<a href="#"><img src="{% static 'img/controll12'}" alt="">
 							<div class="text"></div>
 						</a>
 					</div>
@@ -103,5 +88,5 @@
 		</div>
 	</div>
 
-	<div class="clr"></div>
+
 {% endblock %}
