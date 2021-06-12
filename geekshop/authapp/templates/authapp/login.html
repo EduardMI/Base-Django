@@ -12,6 +12,9 @@
         {{ login_form.as_p}}
 
         <br>
+        {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+        {% endif %}
         <input class="form-control btn btn-primary" type="submit" value="войти">
     </form>
     <button class="btn form-control"><a href="{% url 'main' %}" clas="'">На главную</a></button>
