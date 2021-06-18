@@ -42,10 +42,12 @@ class ShopUserEditForm(UserChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'form-control'
-            field.help_text = ''
-            if field_name == 'password':
-                field.widget = forms.HiddenInput()
+            # убираем добавление класса form-control на поля с chekbox'ами
+            if not (field_name == 'is_active' or field_name == 'is_staff'):
+                field.widget.attrs['class'] = 'form-control'
+                field.help_text = ''
+                if field_name == 'password':
+                    field.widget = forms.HiddenInput()
 
     def clean_age(self):
         data = self.cleaned_data['age']
