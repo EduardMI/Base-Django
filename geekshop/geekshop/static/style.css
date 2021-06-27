@@ -17,7 +17,7 @@ html, body {
 }
 
 .container {
-	width: 1366px;
+	width: 1369px !important;
 	margin: 0 auto;
 	min-height: 100%;
 }
@@ -82,7 +82,7 @@ html, body {
 }
 .basket {
 	display: block;
-	width: 23px;
+	width: 100px;
 	height: 23px;	
 	background-image: url(/static/img/basket.png);
 	position: absolute;
@@ -258,14 +258,22 @@ html, body {
 .tab-content {
 	margin-top: 50px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
 	margin-bottom: 120px;
 }
 .tab-content .block {
 	height: 270px;
 	width: 270px;
 	position: relative;
+	margin-top: 30px;
 }
+
+.tab-content .block .preview {
+    height: 268px;
+    weight: 268px;
+}
+
 .tab-content a .text {
 	display: none;
 	height: 268px;
@@ -543,7 +551,7 @@ html, body {
 
 .footer {
 	height: 384px;
-	width: 1169px;
+	width: 1369px;
 	background-color: #f7f7f7;
 	padding-left: 99px;
 	padding-right: 98px;
@@ -712,15 +720,17 @@ td:first-child {
 }
 
 .location {
-	padding: 0px 97px;
+	padding: 0px 0px;
+	display: flex;
+	justify-content: space-between;
 }
 .location-1 {
 	height: 368px;
 	width: 368px;
 	border: 1px solid #9c9c9c;
 	margin: 71px 28px 122px 0px;
-	float: left;
 }
+
 .location-1:last-child {
 	margin: 71px 0px 122px 0px;
 }
@@ -896,7 +906,7 @@ td:first-child {
 	height: 651px; 
 }
 .details-slider {
-	width: 570px;
+	width: 430px;
 	float: left;
 	margin-right: 30px;
 }
@@ -908,9 +918,9 @@ td:first-child {
 	width: 420px;
 	height: 70px;
 	margin: 11px auto 0px;
-	padding-left: 150px
+	padding-left: 100px
 }
-.slider-control .block {
+.slider-control .block img {
 	height: 70px;
 	width: 70px;
 	position: relative;
@@ -933,7 +943,6 @@ td:first-child {
 .description {
 	width: 535px;
 	float: right;
-	padding-left: 35px
 }
 .description .big-bold {
 	/*text-transform: capitalize;*/

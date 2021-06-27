@@ -1,38 +1,22 @@
-{% extends "geekshop/base.html" %}
+{% extends 'geekshop/base.html' %}
 
 {% load static %}
 
+{% block js %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="{% static 'basketapp/script.js' %}"></script>
+{% endblock %}
 
 {% block content %}
     <div class="hero-white">
         {% include 'geekshop/includes/inc_main_menu.html' %}
     </div>
-    {% if user.is_authenticated %}
-        <div class="row">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Название</th>
-                    <th scope="col">Количество</th>
-                    <th scope="col">Цена</th>
-                    <th scope="col">Стоимость</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                    {% for item in basket %}
-                    <tr>
-                        <th>{{ forloop.counter}}</th>
-                        <th>{{ item.product }}</ths>
-                         <th>{{ item.quantity }}</th>
-                        <th>{{ item.product.price }}</th>
-                        <th>{% widthratio item.quantity 1 item.product.price %}</th>
-                        <th></th>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    {% endif %}
+    <div class="basket_list">
+        {% include 'basketapp/includes/inc_basket_list.html' %}
+    </div>
+    <button class="btn btn-round">
+        <a href="{% url 'main' %}">
+            на главную
+        </a>
+    </button>
 {% endblock %}
