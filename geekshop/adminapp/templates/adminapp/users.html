@@ -23,6 +23,7 @@
                                         <th class="border-top-0">Персонал сайта</th>
                                         <th class="border-top-0">Активный</th>
                                         <th class="border-top-0">Удалить</th>
+                                        <th class="border-top-0">Удаленный</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -35,6 +36,7 @@
                                         <th class="border-top-0">Персонал сайта</th>
                                         <th class="border-top-0">Активный</th>
                                         <th class="border-top-0">Удалить</th>
+                                        <th class="border-top-0">Удаленный</th>
                                     </tr>
                                 </tfoot>
 
@@ -63,6 +65,9 @@
                                         </td>
                                         <td>
                                             <a href="{% url 'admin_staff:user_delete' user.pk %}">Удалить</a>
+                                        </td>
+                                        <td>
+                                            {% if user.is_delete %}да{% else %}нет{% endif %}
                                         </td>
                                     </tr>
                                     {% endfor %}
