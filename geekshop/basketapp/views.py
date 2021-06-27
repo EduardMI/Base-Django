@@ -56,10 +56,10 @@ def basket_edit(request, pk, quantity):
         else:
             new_basket_item.delete()
 
-        basket = Basket.objects.filter(user=request.user).order_by('product__category')
+        basket_items = Basket.objects.filter(user=request.user).order_by('product__category')
 
         context = {
-            'basket': basket,
+            'basket': basket_items,
         }
 
         result = render_to_string('basketapp/includes/inc_basket_list.html', context)
