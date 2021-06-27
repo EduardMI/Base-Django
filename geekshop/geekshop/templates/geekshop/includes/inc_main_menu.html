@@ -5,7 +5,9 @@
 			class="{% if request.path == '/' %}active{% endif %}">домой</a>
 		</li>
 		<li><a href="{% url 'mainapp:products' %}"
-			   class="{% if request.path == '/products/' %}active{% endif %}">продукты</a>
+			   class="{% if request.path == '/products/' or request.resolver_match.url_name == 'category' %}
+			   active
+			   {% endif %}">продукты</a>
 		</li>
 		<li><a href="{% url 'contact' %}"
 			   class="{% if request.path == '/contact/' %}active{% endif %}">контакты</a>
