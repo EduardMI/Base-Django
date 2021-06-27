@@ -39,11 +39,17 @@ class ShopUserEditForm(UserChangeForm):
         model = ShopUser
         fields = ('username', 'first_name', 'email', 'age', 'avatar', 'password')
 
+
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        chek_list = ['is_active', 'is_delete', 'is_staff']
+
         for field_name, field in self.fields.items():
             # убираем добавление класса form-control на поля с chekbox'ами
-            if not (field_name == 'is_active' or field_name == 'is_staff'):
+            # if not (field_name == 'is_active' or field_name == 'is_staff'):
+            if not field_name in chek_list:
                 field.widget.attrs['class'] = 'form-control'
                 field.help_text = ''
                 if field_name == 'password':
