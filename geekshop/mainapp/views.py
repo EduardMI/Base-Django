@@ -1,40 +1,38 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
+from basketapp.models import Basket
 from .models import ProductCategory, Product
+
 
 def products(request, pk=None):
     title = 'каталог'
-    categories = ProductCategory.objects.all()
-    links_menu = [{'href': '/products/', 'name': 'все'}]
+    links_menu = ProductCategory.objects.all()
 
-    # links_menu = [
-    #     {'href': 'category', 'name': 'все'},
-    #     {'href': '/products/1/', 'name': 'дом'},
-    #     {'href': '/products/2', 'name': 'офис'},
-    #     {'href': '/products/3', 'name': 'модерн'},
-    #     {'href': '/products/4', 'name': 'классика'},
-    # ]
-    for item in categories:
-        temp_dict = {}
-        temp_dict['href'] = f'/products/{item.pk}/'
-        temp_dict['name'] = f'{item.name}'
-        links_menu.append(temp_dict)
+    basket = []
+    if request.user.is_authenticated:
+        basket = Basket.objects.filter(user=request.user)
 
+    if pk is not None:
+        if pk == 0:
+            products = Product.objects.all().order_by('price')
+            category = {'name': 'все'}
+        else:
+            category = get_object_or_404(ProductCategory, pk=pk)
+            products = Product.objects.filter(category__pk=pk).order_by('price')
 
-
-    if pk:
-        category = ProductCategory.objects.get(pk=pk)
-        product = Product.objects.all()
         context = {
             'title': title,
             'links_menu': links_menu,
-            'product': product,
+            'products': products,
             'category': category,
+            'basket': basket,
         }
         return render(request, 'mainapp/category.html', context=context)
 
     context = {
         'title': title,
         'links_menu': links_menu,
+        'basket': basket,
     }
 
     return render(request, 'mainapp/products.html', context=context)
