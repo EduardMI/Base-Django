@@ -33,10 +33,13 @@ def products(request, pk=None, page=1):
     if pk is not None:
         if pk == 0:
             products = Product.objects.all().order_by('price')
-            category = {'name': 'все'}
+            category = {
+                'name': 'все',
+                'pk': 0,
+            }
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
-            products = Product.objects.filter(category__pk=pk, is_delete=False).order_by('price')
+            products = Product.objects.filter(category_id__pk=pk, is_delete=False).order_by('price')
 
         paginator = Paginator(products, 2)
         try:
@@ -52,6 +55,7 @@ def products(request, pk=None, page=1):
             'products': products_paginator,
             'category': category,
             'basket': basket,
+
         }
         return render(request, 'mainapp/category.html', context=context)
 
@@ -79,5 +83,5 @@ def product(request, pk):
         'basket': get_basket(request.user),
     }
 
-    return render(request, 'mainapp/products.html', content)
+    return render(request, 'mainapp/product.html', content)
 
