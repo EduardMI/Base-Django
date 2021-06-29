@@ -14,23 +14,13 @@
                             <input class="form-control" type="submit" value="сохранить">
                         </form>
                         <button class="btn btn-round form-control last">
-                            <a href="{% url 'admin_staff:users' %}">
-                                к списку пользователей
+                            <a href="{% url 'admin_staff:products' category.pk %}">
+                                к списку продуктов
                             </a>
                         </button>
                     </div>
                 </div>
             </div>
-             <div class="col-lg-4 col-xlg-3 col-md-5">
-                    <div class="card">
-                        <div class="card-body profile-card">
-                            <center class="mt-4"> <img src="/media/{{edit_user.avatar|default:'user_avatars/default.png'}}"
-                                    class="rounded-circle" width="150" />
-                                <h4 class="card-title mt-2">{{objects.fet_full_name}}</h4>
-                            </center>
-                        </div>
-                    </div>
-             </div>
         </div>
     </div>
 </div>
