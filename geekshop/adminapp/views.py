@@ -339,27 +339,27 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         return reverse_lazy('admin_staff:products', args=[product.category.pk])
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def product_update(request, pk):
-    title = 'продукт/редактирование'
-
-    edit_product = get_object_or_404(Product, pk=pk)
-
-    if request.method == 'POST':
-        edit_form = ProductEditForm(request.POST, request.FILES, instance=edit_product)
-        if edit_form.is_valid():
-            edit_form.save()
-            return HttpResponseRedirect(reverse('admin_staff:product_update', args=[edit_product.pk]))
-    else:
-        edit_form = ProductEditForm(instance=edit_product)
-
-    context = {
-        'title': title,
-        'form': edit_form,
-        'category': edit_product.category,
-    }
-
-    return render(request, 'adminapp/product_update.html', context=context)
+# @user_passes_test(lambda u: u.is_superuser)
+# def product_update(request, pk):
+#     title = 'продукт/редактирование'
+#
+#     edit_product = get_object_or_404(Product, pk=pk)
+#
+#     if request.method == 'POST':
+#         edit_form = ProductEditForm(request.POST, request.FILES, instance=edit_product)
+#         if edit_form.is_valid():
+#             edit_form.save()
+#             return HttpResponseRedirect(reverse('admin_staff:product_update', args=[edit_product.pk]))
+#     else:
+#         edit_form = ProductEditForm(instance=edit_product)
+#
+#     context = {
+#         'title': title,
+#         'form': edit_form,
+#         'category': edit_product.category,
+#     }
+#
+#     return render(request, 'adminapp/product_update.html', context=context)
 
 
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
