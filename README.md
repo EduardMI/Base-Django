@@ -1,1 +1,2 @@
-Base-Django
+# Основы Django Framework
+### учебный проект
